@@ -6,11 +6,14 @@ const rootElement=document.querySelector(':root')
  
 if(document.cookie){
 	// console.log(document.cookie.preferences)
-	const cookie=document.cookie.split('; ').find((cookie)=>cookie.startsWith('preferences'))
-	if(cookie){
-		const preferences=JSON.parse(cookie.split('=')[1])
+	const cookies=document.cookie.split('; ')
+	const fontsizeCookie=cookies.find((cookie)=>cookie.startsWith('fontsize'))
+	const fontcolorCookie=cookies.find((cookie)=>cookie.startsWith('fontcolor'))
+	if(fontsizeCookie && fontcolorCookie){
+		const fontsize=fontsizeCookie.split('=')[1]
+		const fontcolor=fontcolorCookie.split('=')[1]
 		// console.log(JSON.parse(preferences)) 
-		setRootElementProperty(preferences)
+		setRootElementProperty({fontsize,fontcolor})
 	}
 }
             
@@ -20,10 +23,12 @@ submitInput.addEventListener('click',(e)=>{
 		fontsize:fontsizeInput.value,
 		fontcolor:fontcolorInput.value
 	}
-	document.cookie=`preferences=${JSON.stringify(preferences)};`
+	// document.cookie=`preferences=${JSON.stringify(preferences)};`
+	document.cookie=`fontsize=${fontsizeInput.value};`
+	document.cookie=`fontcolor=${fontcolorInput.value};`
 	setRootElementProperty(preferences)
 })
-  
+   
 function setRootElementProperty({fontsize,fontcolor}){
 	rootElement.style.setProperty('--fontsize',fontsize)
 	rootElement.style.setProperty('--fontcolor',fontcolor)
