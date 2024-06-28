@@ -30,8 +30,9 @@ submitInput.addEventListener('click',(e)=>{
 })
    
 function setRootElementProperty({fontsize,fontcolor}){
-	rootElement.style.setProperty('--fontsize',fontsize)
+	rootElement.style.setProperty('--fontsize',fontsize+'px')
 	rootElement.style.setProperty('--fontcolor',fontcolor)
 	fontsizeInput.value=fontsize
-	fontcolorInput.value=fontcolor
+	fontcolorInput.value=fontcolor 
+	// console.log({body:document.body.getPropertyValue('font-size')})
 }
