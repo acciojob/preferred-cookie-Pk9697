@@ -13,7 +13,7 @@ if(document.cookie){
 		setRootElementProperty(preferences)
 	}
 }
-           
+            
 submitInput.addEventListener('click',(e)=>{
 	e.preventDefault()
 	const preferences={
